@@ -1,0 +1,19 @@
+namespace Transport.Messages;
+
+struct TVector2 {
+  x:float;
+  y:float;
+}
+
+struct TVector3 {
+  x:float;
+  y:float;
+  z:float;
+}
+
+struct TQuaternion {
+  x:float;
+  y:float;
+  z:float;
+  w:float;
+}

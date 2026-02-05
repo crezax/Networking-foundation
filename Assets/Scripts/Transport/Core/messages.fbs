@@ -1,0 +1,66 @@
+include "Character/messages.fbs";
+include "Effects/messages.fbs";
+include "Errors/messages.fbs";
+include "HealthManager/messages.fbs";
+include "Inventory/messages.fbs";
+include "MovementController/messages.fbs";
+include "Skills/messages.fbs";
+include "Skills/anchor.fbs";
+include "Stats/messages.fbs";
+
+namespace Transport.Messages;
+
+union ClientMessageContent {
+  LoginMessage,
+}
+
+union ServerMessageContent {
+  DespawnMessage,
+  PlayerInfoMessage,
+  PlayerOwnershipMessage,
+  PlayerSpawnedMessage,
+  SpawnMessage,
+}
+
+table ClientMessage {
+  server_id:long; 
+  message:ClientMessageContent;
+}
+
+table ServerMessage {
+  server_id:long;
+  message:ServerMessageContent;
+}
+
+table SpawnMessage {
+  server_id:long;
+  prefab_id:string;
+  position:TVector3;
+  rotation:TQuaternion;
+}
+
+table DespawnMessage {
+  server_id:long;
+}
+
+table LoginMessage {
+  session_token:string;
+  character_id:long;
+}
+
+table PlayerInfoMessage {
+  player_id:long;
+}
+
+table PlayerOwnershipMessage {
+  player_id:long;
+}
+
+table PlayerSpawnedMessage {
+  server_id:long;
+  inventory_server_id:long;
+  equipment_server_id:long;
+}
+
+root_type ClientMessage;
+root_type ServerMessage;
